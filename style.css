@@ -1,0 +1,104 @@
+/* CSS重置 */
+*{margin:0;padding:0;}
+
+.dropdown-menu{
+    left: 0;
+    top: -2px;
+    z-index: 10;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /*overflow-y:hidden;*/
+}
+.dropdown-list{
+	position: relative;
+}
+.dropdown-li{
+	transition: all .3s;
+}
+.dropdown-li:hover{
+	background-color: #3399FF !important;
+	color: #fff !important;
+	padding-left: 10px;
+	border:0 !important; 
+}
+.item-checked{
+    background-color: #3092c0;
+    color: #fff !important;
+    padding-left: 10px !important;
+    box-shadow: 0px 0px 14px 1px #174F7F inset;
+}
+
+.item-checked:active{
+	background-color: #3366FF !important;
+	color: #000 !important;
+	padding-left: 10px;
+    box-shadow: 0px 0px 14px 1px #286090 inset;
+}
+.item-checked:focus{
+	background-color: #3399FF !important;
+	color: #fff !important;
+	border:0 !important; 
+}
+/* 如果有子菜单，显示图标 -> */
+.has-child-ico{
+	transform: rotate(270deg);
+	margin-top: 8px;display:inline-block;
+}
+/* 翻页滚动 */
+.scroll-btn{
+    left: 0px;
+    text-align: center;
+    margin-left: 0;
+    width: 160px;
+    height: 10px;
+    padding: 10px;
+    visibility: visible;
+    display: block;
+    position: absolute;
+    padding-top: 5px;
+    z-index: 11;
+	transition: background-color .3s;
+	display: none;
+}
+.scroll-btn:hover{
+	/*background-color: #e5e5e5;*/
+}
+/* 向上滚动 */
+.scroll-up{
+    margin-top: -5px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    top: 5px;
+    left: 0;
+    background: -webkit-gradient(linear, 
+    	100% 100%, 
+    	100% 0%, 
+    	color-stop(0.7, rgba(186, 185, 185, 0.498039)), 
+    	color-stop(0.3, rgba(204, 204, 204, 0.2)), 
+    	color-stop(0.1, rgba(237, 237, 237, 0.2)), 
+    	to(rgb(175, 171, 171))
+    	);
+}
+.scroll-up-arrow{
+	transform: rotate(180deg);
+}
+/* 向下滚动 */
+.scroll-down{
+    margin-bottom: -5px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    left: 0;
+    top: 120px;
+    background: -webkit-gradient( 
+    	linear, 
+    	100% 0%, 
+    	100% 100%, 
+    	color-stop(0.1, rgba(237, 237, 237, 0.2)), 
+    	color-stop(0.3, rgba(204, 204, 204, 0.2)), 
+    	color-stop(0.6, rgba(186,185,185,0.8)), 
+    	to(rgb(118, 115, 115)) 
+    	)
+}
+.scroll-down-arrow{
+
+}
