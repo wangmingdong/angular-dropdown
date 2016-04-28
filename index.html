@@ -62,13 +62,6 @@
 					<div class="col-md-2 example-show">
 						<p>选择菜单 </p>
 						<kbd ng-repeat="item in selectAction">{{item.label}} </kbd>
-						<!-- <div bs-dropdown 
-						    						 bs-dropdown-multi 
-						    					     bs-dropdown-display="Multiselect" 
-						    						 bs-dropdown-items="actions" 
-						    						 bs-dropdown-title="请选择"
-						    						 ng-model="selectAction" 
-						    						 ng-change="change()"></div> -->
 						<div bs-dropdown 
     						 bs-dropdown-multi 
     					     bs-dropdown-display="Multiselect" 
@@ -84,19 +77,24 @@
 						  <p>html中：</p>
 						</blockquote>
 						<code>< div bs-dropdown 
-						     bs-dropdown-display="MyDropDown" 
-							 bs-dropdown-items="<kbd>menusBase</kbd>" 
-							 ng-model="<kbd>selectMenuBase</kbd>" 
+						     bs-dropdown-multi 
+    					     bs-dropdown-display="Multiselect" 
+    						 bs-dropdown-title="请选择"
+    						 bs-dropdown-item-disabled="{{[4]}}" 
+    						 bs-dropdown-divider="{{[2]}}" 
+							 ng-model="<kbd>selectAction</kbd>" 
 							 ng-change="changeMenu()">< /div>
 						</code>
 						<blockquote>
 						  <p>controller中：</p>
 						</blockquote>
-						<code>$scope.<kbd>menusBase</kbd> = [</code></br>
+						<code>$scope.<kbd>actions</kbd> = [</code></br>
 						<code>&nbsp;{'label':'菜单1'},</code></br>
 						<code>&nbsp;{'label':'菜单2'},</code></br>
 						<code>&nbsp;{'label':'菜单3'},</code></br>
 						<code>&nbsp;{'label':'菜单4'}</code></br>
+						<code>&nbsp;...</code></br>
+						<code>$scope.selectAction = [$scope.actions[0],$scope.actions[3]</code>
 						<code>];</code></br>
 						<code>$scope.<kbd>selectMenuBase</kbd> = $scope.menusBase[2];</code><br>
 					</div>

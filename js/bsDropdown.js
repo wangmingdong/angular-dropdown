@@ -11,6 +11,7 @@ bd.constant('bsDropdownCfg', {
 	multiSelect:[],
 	multiTitle:''
 });
+/*定义模板缓存默认的模板和多选模板*/
 bd.run(['$templateCache', function($templateCache){
 	$templateCache.put('defaultTemplate',[
 		'<div class="dropdown">',
@@ -90,6 +91,7 @@ bd.controller("bsDropdownController",
 			scrollTime = [0,0,0];		//控制翻页次数/倍数
 		this.init = function(ngModelCtrl_){
 			ngModelCtrl = ngModelCtrl_;
+			/*ngModelCtrl监控数据值变化传给$render*/
 			ngModelCtrl.$render = function(){
 				var isSelectValDefined = angular.isDefined($scope.selected);
 				if(isSelectValDefined){
@@ -309,6 +311,11 @@ bd.controller("bsDropdownController",
 				$scope.showDropdownMenu(event,childPanel[0],scrollUpBtn,scrollDownBtn.nextSibling.nextSibling,2);
 			}
 		}
+		/*监听滚动事件*/
+		/*window.onscroll = function(e){ 
+		    var t = document.documentElement.scrollTop || document.body.scrollTop;  
+		    console.log(t)
+		}*/ 
 		/*如果是多选并且有已选，过滤数组*/
 		$scope.regroup = function(arr){
 			for(var i=0;i<arr.length;i++){
@@ -378,13 +385,13 @@ bd.directive("bsDropdown", ['bsDropdownCfg', function(bsDropdownCfg){
 			require: ['bsDropdown','?ngModel'],
 			controller: "bsDropdownController", 
 			templateUrl: function(elem, attr){
+				/*如果bsDropdownMulti定义过则用多选模板，反之用默认*/
 				return angular.isDefined(attr.bsDropdownMulti)?
 					"multiSelectTemplate":
 					"defaultTemplate";
 			}, 
 			link: function(scope, el, attr, ctrls){
 				var bsDropdownCtrl = ctrls[0], ngModelCtrl = ctrls[1];
-				console.log(bsDropdownCtrl,ngModelCtrl)
 				var defaultDisplay = angular.isDefined(attr.bsDropdownDisplay)?
 										attr.bsDropdownDisplay:bsDropdownCfg.display;
 
