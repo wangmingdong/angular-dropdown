@@ -86,6 +86,7 @@ bd.run(['$templateCache', function($templateCache){
 }]);
 bd.controller("bsDropdownController", 
 	["$scope", "$element", "$attrs", '$interval', function($scope, $element, $attrs ,$interval){
+		console.log($attrs)
 		var ngModelCtrl, 
 			self = this,
 			scrollTime = [0,0,0];		//控制翻页次数/倍数
@@ -166,7 +167,7 @@ bd.controller("bsDropdownController",
 		*	level:当前层级数
 		*/
 		$scope.initDropdown = function(event,isFirst,level){
-			var dropdownWells = $element[0].getElementsByClassName('dropdown-menu'),
+			var dropdownWells = document.getElementsByClassName('dropdown-menu'),
 				scrollBtns = $element[0].getElementsByClassName('scroll-btn'),
 				dropdownWell = event.target.parentNode.getElementsByTagName('ul')[0];
 			if(dropdownWell){
@@ -321,7 +322,7 @@ bd.controller("bsDropdownController",
 			for(var i=0;i<arr.length;i++){
 				for(var j=i;j<arr.length;j++){
 					if(i!=j){
-						if(arr[i].label == arr[j].label){
+						if(arr[i]._k == arr[j]._k){
 							arr.splice(i,1);
 						}
 					}
@@ -342,7 +343,7 @@ bd.controller("bsDropdownController",
 					var index = -1;
 					/*判断已选的对象，控制checked*/
 					for(var i in $scope.selected){
-						if($scope.selected[i].label == item.label){
+						if($scope.selected[i]._k == item._k){
 							index = 1;
 						}
 					}
