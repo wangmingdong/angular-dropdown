@@ -57,6 +57,40 @@
 				</div>
 			</div>
 			<div class="panel panel-default">
+				<div class="panel-heading">末节点可选</div>
+				<div class="panel-body">
+					<div class="col-md-2 example-show">
+						<p>选择菜单<kbd>{{selectMenuBase.label}} </kbd> </p>
+						<div bs-dropdown 
+							 bs-dropdown-items="menusBase" 
+							 bs-dropdown-optional='last'
+							 ng-model="selectMenuBase" 
+							 ng-change="changeMenu()"></div>
+					</div>
+					<div class="col-md-10 panel panel-default example-box">
+						<blockquote>
+						  <p>html中：</p>
+						</blockquote>
+						<code>< div bs-dropdown 
+						     bs-dropdown-display="MyDropDown" 
+							 bs-dropdown-items="<kbd>menusBase</kbd>" 
+							 ng-model="<kbd>selectMenuBase</kbd>" 
+							 ng-change="changeMenu()">< /div>
+						</code>
+						<blockquote>
+						  <p>controller中：</p>
+						</blockquote>
+						<code>$scope.<kbd>menusBase</kbd> = [</code></br>
+						<code>&nbsp;{'label':'菜单1'},</code></br>
+						<code>&nbsp;{'label':'菜单2'},</code></br>
+						<code>&nbsp;{'label':'菜单3'},</code></br>
+						<code>&nbsp;{'label':'菜单4'}</code></br>
+						<code>];</code></br>
+						<code>$scope.<kbd>selectMenuBase</kbd> = $scope.menusBase[2];</code><br>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-default">
 				<div class="panel-heading">多选用法</div>
 				<div class="panel-body">
 					<div class="col-md-2 example-show">

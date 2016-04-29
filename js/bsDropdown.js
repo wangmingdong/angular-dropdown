@@ -86,7 +86,6 @@ bd.run(['$templateCache', function($templateCache){
 }]);
 bd.controller("bsDropdownController", 
 	["$scope", "$element", "$attrs", '$interval', function($scope, $element, $attrs ,$interval){
-		console.log($attrs)
 		var ngModelCtrl, 
 			self = this,
 			scrollTime = [0,0,0];		//控制翻页次数/倍数
@@ -322,7 +321,7 @@ bd.controller("bsDropdownController",
 			for(var i=0;i<arr.length;i++){
 				for(var j=i;j<arr.length;j++){
 					if(i!=j){
-						if(arr[i]._k == arr[j]._k){
+						if(arr[i].label == arr[j].label){
 							arr.splice(i,1);
 						}
 					}
@@ -343,7 +342,7 @@ bd.controller("bsDropdownController",
 					var index = -1;
 					/*判断已选的对象，控制checked*/
 					for(var i in $scope.selected){
-						if($scope.selected[i]._k == item._k){
+						if($scope.selected[i].label == item.label){
 							index = 1;
 						}
 					}
@@ -366,12 +365,24 @@ bd.controller("bsDropdownController",
 						}
 						$scope.selected = newSelected;
 					}
-				} else{
-					$scope.selected = item;
+				} else {
+					/*判断可选性*/
+					if($scope.optional == 'last'){	//只选子节点
+						if(!item.child){
+							$scope.selected = item;
+						}
+					}else if($scope.optional == 'first'){	//只选父节点
+						if(item.child){
+							$scope.selected = item;
+						}
+					}else{			//随意选
+						$scope.selected = item;
+					}
 				}
 				self.checkMultiOptions();
 				ngModelCtrl.$render();
 			}
+			/*如果多选过滤数据*/
 			if($scope.multiSelect)	{
 				$scope.regroup($scope.selected);
 			}
@@ -408,6 +419,8 @@ bd.directive("bsDropdown", ['bsDropdownCfg', function(bsDropdownCfg){
 									scope.$eval(attr.bsDropdownDisabled):bsDropdownCfg.disabled;
 				/*多选*/
 				scope.multiSelect = angular.isDefined(attr.bsDropdownMulti);
+				/*可选性*/
+				scope.optional = attr.bsDropdownOptional;
 				/*如果多选按钮上显示文字*/
 				scope.multiTitle = attr.bsDropdownTitle;
 
