@@ -16,7 +16,7 @@ bd.run(['$templateCache', function($templateCache){
 	$templateCache.put('defaultTemplate',[
 		'<div class="dropdown">',
 		  '<button class="btn btn-default dropdown-toggle" type="button" ng-click="showDropdown($event);" data-toggle="dropdown" aria-expanded="true">',
-		    '{{showText.label}} ',
+		    '{{multiTitle || showText.label}}',
 		    '<span class="caret"></span>',
 		  '</button>',
 		  '<span class="scroll-up scroll-btn" ng-click="scrollItems($event,false,1);"><span class="scroll-up-arrow caret"></span></span>',
@@ -167,7 +167,7 @@ bd.controller("bsDropdownController",
 		*/
 		$scope.initDropdown = function(event,isFirst,level){
 			var dropdownWells = document.getElementsByClassName('dropdown-menu'),
-				scrollBtns = $element[0].getElementsByClassName('scroll-btn'),
+				scrollBtns = document.getElementsByClassName('scroll-btn'),
 				dropdownWell = event.target.parentNode.getElementsByTagName('ul')[0];
 			if(dropdownWell){
 				/*如果ul进行翻页则该ul归位*/
@@ -183,6 +183,10 @@ bd.controller("bsDropdownController",
 					if(dropdownWell != dropdownWells[i]){
 						dropdownWells[i].style.display = 'none';
 					}
+				}
+				/*隐藏所有scroll-btn*/
+				for(var i=0;i<scrollBtns.length;i++){
+					scrollBtns[i].style.display = 'none';
 				}
 				scrollTime = [0,0,0];
 			}else{
@@ -314,8 +318,31 @@ bd.controller("bsDropdownController",
 		/*监听滚动事件*/
 		/*window.onscroll = function(e){ 
 		    var t = document.documentElement.scrollTop || document.body.scrollTop;  
+		    var dropdownWells = document.getElementsByClassName('dropdown-menu'),
+				scrollBtns = document.getElementsByClassName('scroll-btn'),
+				firstDropdown,
+				getPosition;
 		    console.log(t)
-		}*/ 
+		    for(var i=0;i<dropdownWells.length;i++){
+		    	if(dropdownWells[i].style.display == 'block'){
+		    		firstDropdown = dropdownWells[0];
+		    		getPosition = firstDropdown.getBoundingClientRect();
+		    		dropdownWells[i].style.top = t - parseInt(getPosition.top);
+		    	}
+		    }
+		    for(var i=0;i<scrollBtns.length;i++){
+		    	// console.log(firstDropdown.getBoundingClientRect())
+		    	if(!scrollBtns[i].style.top){
+		    		return;
+		    	}
+		    	if(scrollBtns[i].className.indexOf('scroll-up') > -1){
+		    		scrollBtns[i].style.top = t - parseInt(getPosition.top);
+		    		console.log(scrollBtns[i].style.top)
+		    	}else{
+		    		scrollBtns[i].style.top = t + getPosition.height;
+		    	}
+		    }
+		} */
 		/*如果是多选并且有已选，过滤数组*/
 		$scope.regroup = function(arr){
 			for(var i=0;i<arr.length;i++){
@@ -454,8 +481,8 @@ bd.directive("bsDropdown", ['bsDropdownCfg', function(bsDropdownCfg){
 				}
 				/*将数据重新包装*/
 				function createDropdownItems(){
-					var dropdownItem = [];
-					var _k = 0;
+					var dropdownItem = [],
+						_k = 0;
 					for(var i=0;i<scope.bsDropdownItems.length;i++){
 						var isDivider = scope.divider.indexOf(i)!=-1,
 							isDisabled = scope.disabledItems.indexOf(i)!=-1,
