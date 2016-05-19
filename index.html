@@ -20,6 +20,15 @@
 
     <section class="main-content">
       <h3>
+<a id="引入js文件" class="anchor" href="#%E5%BC%95%E5%85%A5js%E6%96%87%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>引入JS文件</h3>
+
+<p><code>&lt;script src="js/angular.min.js"&gt;&lt;/script&gt;</code></p>
+
+<hr>
+
+<p><code>&lt;script src="js/bsDropdown.js"&gt;&lt;/script&gt;</code></p>
+
+<h3>
 <a id="基本用法" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>基本用法</h3>
 
 <p>`</p><blockquote>
@@ -76,17 +85,73 @@
 <h3>
 <a id="多选用法" class="anchor" href="#%E5%A4%9A%E9%80%89%E7%94%A8%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>多选用法</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>`</p><blockquote>
+  <p>html中：</p>
+</blockquote>
+<code>&lt; div bs-dropdown 
+     bs-dropdown-multi 
+     bs-dropdown-display="Multiselect" 
+     bs-dropdown-title="请选择"
+     bs-dropdown-item-disabled="{{[4]}}" 
+     bs-dropdown-divider="{{[2]}}" 
+     ng-model="<kbd>selectAction</kbd>" 
+     ng-change="changeMenu()"&gt;&lt; /div&gt;
+</code>
+
+<blockquote>
+  <p>controller中：</p>
+</blockquote>
+
+<p><code>$scope.<kbd>actions</kbd> = [</code>
+<code> {'label':'菜单1'},</code>
+<code> {'label':'菜单2'},</code>
+<code> {'label':'菜单3'},</code>
+<code> {'label':'菜单4'}</code>
+<code> ...</code>
+<code>$scope.selectAction = [$scope.actions[0],$scope.actions[3]</code>
+<code>];</code>
+<code>$scope.<kbd>selectMenuBase</kbd> = $scope.menusBase[2];</code><br>`</p>
 
 <h3>
 <a id="综合用法" class="anchor" href="#%E7%BB%BC%E5%90%88%E7%94%A8%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>综合用法</h3>
 
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>`</p><blockquote>
+  <p>html中:</p>
+</blockquote>
+<code>
+    &lt; div bs-dropdown 
+         bs-dropdown-display="MyDropDown" 
+         bs-dropdown-items="<kbd>menus</kbd>" 
+         ng-model="<kbd>selectMenu</kbd>" 
+         ng-change="changeMenu()"&gt;&lt; /div&gt;
+</code>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<blockquote>
+  <p>controller中：</p>
+</blockquote>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p><code>$scope.<kbd>menus</kbd> = [</code><br>
+<code> {'label':'菜单1','id':1},</code><br>
+<code> {'label':'菜单2','id':2},</code><br>
+<code> {'label':'菜单3','id':3,'child':[</code><br>
+<code>   {'label':'子菜单3-1','id':31},</code><br>
+<code>   {'label':'子菜单3-2','id':32}</code><br>
+<code>  ]},</code><br>
+<code> {'label':'菜单4','id':4},</code><br>
+<code> {'label':'菜单5','id':5},</code><br>
+<code> {'label':'菜单6','id':6,'child':[</code><br>
+<code>   {'label':'子菜单6-1','id':61},</code><br>
+<code>   {'label':'子菜单6-2','id':62,'child':[</code><br>
+<code>     {'label':'子菜单6-2-1','id':621},</code><br>
+<code>     {'label':'子菜单6-2-2','id':622},</code><br>
+<code>     {'label':'子菜单6-2-3','id':623}</code><br>
+<code>   ]},</code><br>
+<code>   {'label':'子菜单链接6-3','id':63,'link':'<a href="http://www.baidu.com">http://www.baidu.com</a>'}</code><br>
+<code>  ]},</code><br>
+<code> {'label':'链接','id':7,'link':'<a href="http://www.baidu.com">http://www.baidu.com</a>'}</code><br>
+<code> ];</code><br>
+<code>$scope.<kbd>selectMenu</kbd> = $scope.menus[2];</code><br>
+<code></code>`</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/wangmingdong/angular-dropdown">Angular-dropdown</a> is maintained by <a href="https://github.com/wangmingdong">wangmingdong</a>.</span>
