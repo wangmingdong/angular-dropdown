@@ -9,7 +9,6 @@ angular.module("demoApp", ['ng.dropdown'])
 			{'label':'菜单4'},
 			{'label':'菜单5'},
 			{'label':'菜单6'},
-			{'label':'菜单6'},
 			{'label':'菜单7'},
 			{'label':'菜单8'},
 			{'label':'菜单9','id':3,'child':[
@@ -36,6 +35,7 @@ angular.module("demoApp", ['ng.dropdown'])
 			{'label':'菜单15'}
 		];
 		$scope.selectMenuBase = $scope.menusBase[2];
+		$scope.selectLastRoot = $scope.menusBase[3];
 		$scope.menus = [
 			{'label':'菜单1','id':1},
 			{'label':'菜单2','id':2},

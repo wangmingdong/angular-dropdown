@@ -60,11 +60,11 @@
 				<div class="panel-heading">末节点可选</div>
 				<div class="panel-body">
 					<div class="col-md-2 example-show">
-						<p>选择菜单<kbd>{{selectMenuBase.label}} </kbd> </p>
+						<p>选择菜单<kbd>{{selectLastRoot.label}} </kbd> </p>
 						<div bs-dropdown 
 							 bs-dropdown-items="menusBase" 
 							 bs-dropdown-optional='last'
-							 ng-model="selectMenuBase" 
+							 ng-model="selectLastRoot" 
     						 bs-dropdown-title="请选择"
 							 ng-change="changeMenu()"></div>
 					</div>
@@ -73,7 +73,9 @@
 						  <p>html中：</p>
 						</blockquote>
 						<code>< div bs-dropdown 
-						     bs-dropdown-display="MyDropDown" 
+							 bs-dropdown-items="menusBase" 
+							 bs-dropdown-optional='<kbd>last</kbd>'
+    						 bs-dropdown-title="<kbd>请选择</kbd>"
 							 bs-dropdown-items="<kbd>menusBase</kbd>" 
 							 ng-model="<kbd>selectMenuBase</kbd>" 
 							 ng-change="changeMenu()">< /div>
