@@ -225,21 +225,31 @@ bd.controller("bsDropdownController",
 					/*如果ul高度比可视区域小，则上移*/
 					if(windowHeight.domHeight <= windowHeight.fullHeight){
 						dropdownWell.style.marginTop = windowHeight.bottomHeight;
+						dropdownWell.style.position = 'absolute';
+						scrollUpBtn.style.position = 'absolute';
+						scrollDownBtn.style.position = 'absolute';
 					}else{		//否则显示滚动按钮
 						scrollUpBtn.style.display = 'none';
-						scrollUpBtn.style.left = event.target.clientWidth;
-						scrollUpBtn.style.top = -event.target.getBoundingClientRect().top + 5;
+						scrollUpBtn.style.position = 'fixed';
+						scrollUpBtn.style.left = event.target.getBoundingClientRect().left + event.target.getBoundingClientRect().width;
+						scrollUpBtn.style.top = 5;
 						scrollDownBtn.style.display = 'block';
-						scrollDownBtn.style.left = event.target.clientWidth;
-						scrollDownBtn.style.top = windowHeight.fullHeight - event.target.getBoundingClientRect().top -15;
-						dropdownWell.style.top = -event.target.getBoundingClientRect().top;
+						scrollDownBtn.style.position = 'fixed';
+						scrollDownBtn.style.left = event.target.getBoundingClientRect().left + event.target.getBoundingClientRect().width;
+						scrollDownBtn.style.top = windowHeight.fullHeight-15;
+						dropdownWell.style.position = 'fixed';
+						dropdownWell.style.top = 0;
+						dropdownWell.style.left = event.target.getBoundingClientRect().left + event.target.getBoundingClientRect().width;
 						dropdownWell.style.height = windowHeight.fullHeight;
 					}
 				}
 			}else{
 				dropdownWell.style.display = 'none';
+				dropdownWell.style.position = 'absolute';
 				scrollUpBtn.style.display = 'none';
+				scrollUpBtn.style.position = 'absolute';
 				scrollDownBtn.style.display = 'none';
+				scrollDownBtn.style.position = 'absolute';
 			}
 		}
 		/*点击显示dropdown*/
@@ -315,34 +325,7 @@ bd.controller("bsDropdownController",
 				$scope.showDropdownMenu(event,childPanel[0],scrollUpBtn,scrollDownBtn.nextSibling.nextSibling,2);
 			}
 		}
-		/*监听滚动事件*/
-		/*window.onscroll = function(e){ 
-		    var t = document.documentElement.scrollTop || document.body.scrollTop;  
-		    var dropdownWells = document.getElementsByClassName('dropdown-menu'),
-				scrollBtns = document.getElementsByClassName('scroll-btn'),
-				firstDropdown,
-				getPosition;
-		    console.log(t)
-		    for(var i=0;i<dropdownWells.length;i++){
-		    	if(dropdownWells[i].style.display == 'block'){
-		    		firstDropdown = dropdownWells[0];
-		    		getPosition = firstDropdown.getBoundingClientRect();
-		    		dropdownWells[i].style.top = t - parseInt(getPosition.top);
-		    	}
-		    }
-		    for(var i=0;i<scrollBtns.length;i++){
-		    	// console.log(firstDropdown.getBoundingClientRect())
-		    	if(!scrollBtns[i].style.top){
-		    		return;
-		    	}
-		    	if(scrollBtns[i].className.indexOf('scroll-up') > -1){
-		    		scrollBtns[i].style.top = t - parseInt(getPosition.top);
-		    		console.log(scrollBtns[i].style.top)
-		    	}else{
-		    		scrollBtns[i].style.top = t + getPosition.height;
-		    	}
-		    }
-		} */
+		
 		/*如果是多选并且有已选，过滤数组*/
 		$scope.regroup = function(arr){
 			for(var i=0;i<arr.length;i++){
