@@ -18,6 +18,8 @@
 <code>&nbsp;{'label':'菜单4'}</code></br>
 <code>];</code></br>
 <code>$scope.<kbd>selectMenuBase</kbd> = $scope.menusBase[2];</code><br>
+![image text](https://raw.githubusercontent.com/wangmingdong/angular-dropdown/master/img/20171218174002.png)
+
 
 ## 末节点可选
 <code>< div bs-dropdown 
@@ -94,3 +96,4 @@
 <code>&nbsp;{'label':'链接','id':7,'link':'http://www.baidu.com'}</code><br>
 <code>&nbsp;];</code><br>
 <code>$scope.<kbd>selectMenu</kbd> = $scope.menus[2];</code><br>
+![image text](https://raw.githubusercontent.com/wangmingdong/angular-dropdown/master/img/20171218174041.png)
